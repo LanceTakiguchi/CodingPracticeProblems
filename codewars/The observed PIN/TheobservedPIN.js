@@ -3,12 +3,24 @@
  * observed string possible number that was inputed by the mark
  */
 var getPINs = function(observed) {
+    var numArray = strToNumArray(observed);
     var positions = [];
-    for (var input in observed) {
-        var num = parseInt(input);
-        positions.push(allNearNums(num));
+    for (var num in numArray){
+        positions.push(allNearNums(numArray[num]));
     }
-    allCombos();
+    var pinsArray = allCombos(positions);
+}
+/**
+ * strToNumArray - Converts a string of numbers into an array of numbers
+ * @param {string} numStr 
+ */
+var strToNumArray = function(numStr){
+    var positions = [];
+    for (var input in numStr) {
+        var num = parseInt(numStr[input]);
+        positions.push(num);
+    }
+    return positions
 }
 /**
  * allNearNums - Given an int, outputs an array of possible, inputs that could have been entered by a mark
@@ -52,7 +64,6 @@ var allCombos = function(positions) {
         return answer;
     }
     // > 1 positions
-
 }
-//11
-//11,12,14,21,22,24,41,42,44
+
+//For 11: 11,12,14,21,22,24,41,42,44
